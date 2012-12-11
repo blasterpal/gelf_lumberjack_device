@@ -1,0 +1,16 @@
+GELF Lumberjack Device
+
+This gem provides a logging device for the Lumberjack gem that will log to Graylog, the centralized system logging facility. See graylog2.org for more information on graylog. 
+
+NOTE: The layout of the Gem is specifically so that the file and line reported to Graylog is correct. Specifically the 'set_file_and_line' method here: https://github.com/Graylog2/gelf-rb/blob/master/lib/gelf/notifier.rb#L183
+
+
+== Example Usage
+
+  require 'gelf_lumberjack_device'
+  
+  device = GELF::LumberjackDevice.new({:host => 'graylog.example.com', :port => 12201, :max_size => 'WAN', :facility => 'my_app'})
+  logger = Lumberjack::Logger.new(device)
+  logger.info("Write me to graylog!")
+
+See GELF::LumberjackDevice for more details.
